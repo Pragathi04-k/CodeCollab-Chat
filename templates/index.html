@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeCollab – Unite & Build</title>
+  <style>
+   body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #cee2d0ff, #f1f8e9);
+    color: #000000ff;
+  }
+
+  /* Navbar */
+  header {
+    background: url("static/back8.png") no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 10px;
+  }
+
+  /* (kept for layout balance, but empty now) */
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    flex: 1;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  /* Main Layout: content left + chatbot right */
+  .main {
+    display: flex;
+    flex: 0;
+    height: calc(100vh - 70px); /* Adjusted for header height */
+  }
+
+  /* Left side content */
+  .content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+  }
+
+  h2 {
+    color: #2e7d32;
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 12px;
+  }
+
+  footer {
+    background: #205a23ff;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    margin-top: auto;  
+  }
+
+  /* Chatbot fixed on right below navbar */
+  .chatbot-window {
+    width: 480px;
+    background: rgba(20, 20, 20, 0.95);
+    border-left: 3px solid #010101ff;
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+  }
+
+  .chatbot-window h2 {
+    background: #233723ff;
+    color: #fff;
+    margin: 0;
+    padding: 12px;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  #chat-box {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .user-msg {
+    background: #2e7d32;
+    padding: 10px 14px;
+    border-radius: 18px;
+    align-self: flex-end;
+    max-width: 80%;
+    color: #fff;
+  }
+  .bot-msg {
+    background: #3f3c3cff;
+    padding: 10px 13px;
+    border-radius: 18px;
+    align-self: flex-start;
+    max-width: 80%;
+    color: #eee;
+    font-size: 16px;
+  }
+
+  .input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #444;
+    background: #111;
+  }
+  .input-container input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #444;
+    background: #222;
+    color: #f5f5f5;
+  }
+  .input-container button {
+    margin-left: 8px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 50%;
+    background: #2e7d32;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* Typing animation */
+  .typing .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 2px;
+    background: #ccc;
+    border-radius: 50%;
+    animation: blink 1.4s infinite both;
+  }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes blink {
+    0% { opacity: .2; }
+    20% { opacity: 1; }
+    100% { opacity: .2; }
+  }
+
+  @media (max-width: 900px) {
+    .main { flex-direction: column; }
+    .chatbot-window { width: 100%; height: 50vh; }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="logo"></div> <!-- removed back button & logo image -->
+    <div class="title">CodeCollab</div>
+  </header>
+
+  <!-- Main layout -->
+  <div class="main">
+    <!-- Left side content -->
+    <div class="content">
+      <div class="card">
+        <h2>🧩 What is CodeCollab?</h2>
+        <p>
+          <b>CodeCollab</b> is a unified workspace where developers plan, code, review, and ship together.
+          Organize repositories, manage tasks, discuss designs, and track contributions—all in one place.
+        </p>
+        <img class="image-row" src="static/back2.png" alt="Team Collaboration Overview" style="width:40%; height:auto; border-radius:10px; margin-top:10px; margin-left:10px;"> 
+        <img class="image-row" src="static/back1.png" alt="Project Dashboard" style="width:40%; height:248px; border-radius:10px; margin-top:10px; margin-left:30px">
+      </div>
+
+      <div class="card">
+        <h2>🚀 Why Teams Love CodeCollab</h2>
+        <ul>
+          <li><b>Work Unification:</b> Issues, docs, code reviews, and chats—side by side.</li>
+          <li><b>Contribution Tracking:</b> See who did what, when, and how much—commits, PRs, tasks.</li>
+          <li><b>Workflow Automation:</b> PR checks, deployments, and notifications—on autopilot.</li>
+          <li><b>Knowledge Hub:</b> Centralized docs, decisions, and retros for future reference.</li>
+        </ul>
+        <img src="static/back4.png" alt="Contribution Analytics" style="width:40%; height:256px; border-radius:10px; margin-top:10px;">
+        <img src="static/back3.png" alt="Tasks & Sprints" style="width:40%; height:256px; border-radius:10px; margin-top:10px; margin-left:30px">
+      </div>
+
+      <div class="card">
+        <h2>🔄 Typical Dev Workflows</h2>
+        <p><b>Plan → Code → Review → Merge → Deploy → Measure</b></p>
+        <p><b>Issue → Branch → PR → CI/CD → Release → Feedback</b></p>
+        <p><b>Task → Assignment → Progress → Contribution Insights</b></p>
+        <img src="static/back9.png" alt="PR & Review Flow" style="width:40%; height:256px; border-radius:10px; margin-top:10px; margin-left:30px">
+        <img src="static/back10.png" alt="Sprint Boards" style="width:40%; height:256px; border-radius:10px; margin-top:10px; margin-left:30px">
+      </div>
+
+      <footer>© 2025 CodeCollab | Built for devs 🧑‍💻</footer>
+    </div>
+
+    <!-- Right side chatbot -->
+    <div class="chatbot-window">
+      <h2>🧠 CodeCollab Assistant</h2>
+      <div id="chat-box">
+        <div class="bot-msg">
+          <b>Bot:</b> Hey! I can help with workflows, tasks, and contribution insights.<br>
+          Try asking:
+          <ul>
+            <li onclick="setSuggestion('How do I merge a branch into main on GitHub?')">How do I merge a branch into main on GitHub?</li>
+<li onclick="setSuggestion('What is the difference between merge and rebase in Git?')">What is the difference between merge and rebase in Git?</li>
+<li onclick="setSuggestion('Is there a limit to how many commits I can push in a PR?')">Is there a limit to how many commits I can push in a PR?</li>
+<li onclick="setSuggestion('How do I resolve merge conflicts on GitHub?')">How do I resolve merge conflicts on GitHub?</li>
+<li onclick="setSuggestion('When should I squash commits before merging a PR?')">When should I squash commits before merging a PR?</li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="input-container">
+        <input type="text" id="user-input" placeholder="Ask about tasks, PRs, CI/CD…">
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function setSuggestion(text) {
+      document.getElementById("user-input").value = text;
+    }
+
+    function sendMessage() {
+      let userInput = document.getElementById("user-input").value;
+      if (userInput.trim() === "") return;
+
+      let chatBox = document.getElementById("chat-box");
+      chatBox.innerHTML += `<div class='user-msg'><b>You:</b> ${userInput}</div>`;
+
+      // Typing animation
+      let typingDiv = document.createElement("div");
+      typingDiv.className = "bot-msg typing";
+      typingDiv.innerHTML = `<b>Bot:</b> <span class="dot"></span><span class="dot"></span><span class="dot"></span>`;
+      chatBox.appendChild(typingDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Call backend (same endpoint, just different domain language)
+      fetch("/get", {
+          method: "POST",
+          body: new URLSearchParams({ "msg": userInput }),
+          headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      })
+      .then(response => response.json())
+      .then(data => {
+          typingDiv.remove();
+          chatBox.innerHTML += `<div class='bot-msg'><b>Bot:</b> ${data.response}</div>`;
+          chatBox.scrollTop = chatBox.scrollHeight;
+      });
+
+      document.getElementById("user-input").value = "";
+    }
+
+    document.getElementById("user-input").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    });
+  </script>
+
+</body>
+</html>
